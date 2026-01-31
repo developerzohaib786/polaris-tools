@@ -29,6 +29,25 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Reproducibility: disable non-deterministic options
+    cssCodeSplit: false,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        // Use content hash for deterministic chunk names
+        chunkFileNames: "assets/[name]-[hash].js",
+        entryFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash][extname]",
+        // Ensure consistent chunk ordering by grouping node_modules
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
   server: {
     proxy: {
       "/api": {

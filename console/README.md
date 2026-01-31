@@ -105,6 +105,28 @@ make build
 
 Output will be in the `dist/` directory.
 
+## Reproducible Builds
+
+For Apache releases and verification purposes, this project supports reproducible builds using [Devbox](https://www.jetify.com/devbox).
+
+### Prerequisites
+
+Install Devbox:
+
+```bash
+curl -fsSL https://get.jetify.com/devbox | bash
+```
+
+### Verifying Reproducibility
+
+To verify that builds are reproducible (builds twice and compares checksums):
+
+```bash
+make verify-reproducible
+```
+
+This will build the project twice and compare SHA256 checksums of the output tarballs.
+
 ## Production Deployment
 
 After building, you can serve the production files in several ways:
