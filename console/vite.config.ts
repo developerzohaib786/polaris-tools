@@ -30,16 +30,16 @@ export default defineConfig({
     },
   },
   build: {
-    // Reproducibility: disable non-deterministic options
+    // reporducibilty : disable non-deterministic options
     cssCodeSplit: false,
     sourcemap: false,
     rollupOptions: {
       output: {
-        // Use content hash for deterministic chunk names
+        // using content hash for deterministic chunk names
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash][extname]",
-        // Ensure consistent chunk ordering by grouping node_modules
+        // Eensure consistent chunk ordering by grouping node-modules
         manualChunks: (id) => {
           if (id.includes("node_modules")) {
             return "vendor";

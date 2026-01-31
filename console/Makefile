@@ -48,5 +48,5 @@ verify-reproducible:
 	@tar --sort=name --mtime="1980-01-01 00:00:00 UTC" --owner=0 --group=0 --numeric-owner -cf /tmp/b.tar dist/
 	@echo "Build A:" && sha256sum /tmp/a.tar
 	@echo "Build B:" && sha256sum /tmp/b.tar
-	@diff <(sha256sum /tmp/a.tar | cut -d' ' -f1) <(sha256sum /tmp/b.tar | cut -d' ' -f1) && echo "✅ Builds are reproducible!" || { echo "❌ Builds are NOT reproducible"; exit 1; }
+	@diff <(sha256sum /tmp/a.tar | cut -d' ' -f1) <(sha256sum /tmp/b.tar | cut -d' ' -f1) && echo " Builds are reproducible!" || { echo "Builds are NOT reproducible"; exit 1; }
 	@rm -f /tmp/a.tar /tmp/b.tar
